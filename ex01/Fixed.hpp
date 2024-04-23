@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   Fixed.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/03/25 11:38:20 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/27 12:24:44 by rfinneru      ########   odam.nl         */
+/*   Created: 2024/03/27 15:06:37 by rfinneru      #+#    #+#                 */
+/*   Updated: 2024/04/22 14:40:16 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#pragma once
 
-int	main(void)
+#include <cmath>
+#include <iostream>
+
+class Fixed
 {
-	Fixed	a;
-	Fixed	c;
+  private:
+	int _fixed_num;
+	static const int _frac_bits = 8;
 
-	Fixed b(a); 
-	c = b;
-   
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return (0);
-}
+  public:
+	Fixed();
+	Fixed(const int value);
+	Fixed(const float value);
+	Fixed(const Fixed &copy);
+	Fixed &operator=(const Fixed &t);
+	~Fixed();
+	float toFloat(void) const;
+	int toInt(void) const;
+};
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
+
