@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/22 12:43:38 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/04/23 19:43:11 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/04/24 12:11:19 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ Fixed Fixed::operator/(const Fixed &b) const
 {
 	Fixed	result;
 
-    result._fixed_num = static_cast<int>((this->_fixed_num * b._fixed_num) << _frac_bits);
+    result._fixed_num = static_cast<int>((static_cast<long long>(this->_fixed_num) << _frac_bits) / b._fixed_num);
 	return (result);
 }
 
@@ -92,7 +92,7 @@ Fixed Fixed::operator*(const Fixed &b) const
 {
 	Fixed	result;
 
-    result._fixed_num = static_cast<int>((this->_fixed_num * b._fixed_num) >> _frac_bits);
+    result._fixed_num = static_cast<int>((static_cast<long long>(this->_fixed_num) * b._fixed_num) >> _frac_bits);
 	return (result);
 }
 
