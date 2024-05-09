@@ -6,13 +6,13 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 11:38:16 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/05/03 12:15:52 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/05/09 14:24:00 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _fixed_num(0)
+Fixed::Fixed() : _raw_bits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -20,13 +20,13 @@ Fixed::Fixed() : _fixed_num(0)
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->_fixed_num = other._fixed_num;
+	this->_raw_bits = other._raw_bits;
 }
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
-		this->_fixed_num = other._fixed_num;
+		this->_raw_bits = other._raw_bits;
 	return (*this);
 }
 
@@ -38,11 +38,11 @@ Fixed::~Fixed()
 int Fixed::getRawBits(void)
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->_fixed_num);
+	return (this->_raw_bits);
 }
 
 void Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	this->_fixed_num = raw;
+	this->_raw_bits = raw;
 }

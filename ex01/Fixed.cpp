@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/27 15:07:52 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/04/22 12:00:47 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/05/09 14:24:00 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 	return (os);
 }
 
-Fixed::Fixed() : _fixed_num(0)
+Fixed::Fixed() : _raw_bits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -26,26 +26,26 @@ Fixed::Fixed() : _fixed_num(0)
 Fixed::Fixed(const int value)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixed_num = value << this->_frac_bits;
+	this->_raw_bits = value << this->_frac_bits;
 }
 
 Fixed::Fixed(const float value)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_fixed_num = roundf(value * (1 << this->_frac_bits));
+	this->_raw_bits = roundf(value * (1 << this->_frac_bits));
 }
 
 Fixed::Fixed(const Fixed &copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->_fixed_num = copy._fixed_num;
+	this->_raw_bits = copy._raw_bits;
 }
 
 Fixed &Fixed::operator=(const Fixed &t)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &t)
-		this->_fixed_num = t._fixed_num;
+		this->_raw_bits = t._raw_bits;
 	return (*this);
 }
 
@@ -56,10 +56,10 @@ Fixed::~Fixed()
 
 float Fixed::toFloat(void) const
 {
-	return (static_cast<float>(this->_fixed_num) / (1 << this->_frac_bits));
+	return (static_cast<float>(this->_raw_bits) / (1 << this->_frac_bits));
 }
 
 int Fixed::toInt(void) const
 {
-	return (_fixed_num >> _frac_bits);
+	return (_raw_bits >> _frac_bits);
 }

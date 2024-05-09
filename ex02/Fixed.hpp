@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/22 12:43:40 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/04/23 19:28:48 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/05/09 14:24:00 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
   private:
-	int _fixed_num;
+	int _raw_bits;
 	static const int _frac_bits = 8;
 
   public:
